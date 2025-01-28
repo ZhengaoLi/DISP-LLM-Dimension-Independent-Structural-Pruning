@@ -71,7 +71,7 @@ This project implements a  hypernetwork-based pruning approach  for the LLaMA la
 ---
 #### To-Do List
 - Perform pruning and evaluation on the LLaMA-2 7B model using the trained hypernetwork weights.
-
+#### Citation
 ```
 @inproceedings{gaodisp,
   title={DISP-LLM: Dimension-Independent Structural Pruning for Large Language Models},
