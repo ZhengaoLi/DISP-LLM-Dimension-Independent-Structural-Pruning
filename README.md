@@ -17,6 +17,8 @@ This project aligns with several key topics at NeurIPS 2024, particularly in:
 
 This work was developed with the goal of contributing to research on **efficient large-scale model pruning** and is relevant to submissions under the NeurIPS 2024 category: *Deep Learning and Optimization for Large Language Models*.
 
+---
+
 ####  Code Structure 
 ```
 .
