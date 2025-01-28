@@ -8,6 +8,15 @@ This project implements a  hypernetwork-based pruning approach  for the LLaMA la
 
 ---
 
+#### Relation to NeurIPS 2024
+
+This project aligns with several key topics at NeurIPS 2024, particularly in:
+- **Deep Learning:** Our work focuses on efficient optimization for deep networks, specifically through structured pruning for LLaMA.
+- **Optimization:** We utilize dynamic pruning strategies to reduce model parameters while maintaining performance.
+- **Infrastructure & Scaling:** Our approach enables scalable training with **Distributed Data Parallel (DDP)** and **Fully Sharded Data Parallel (FSDP)**, making large-scale models more feasible for real-world applications.
+
+This work was developed with the goal of contributing to research on **efficient large-scale model pruning** and is relevant to submissions under the NeurIPS 2024 category: *Deep Learning and Optimization for Large Language Models*.
+
 ####  Code Structure 
 ```
 .
