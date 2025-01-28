@@ -1,5 +1,5 @@
 CUDA_VISIBLE_DEVICES=1,2 \
-torchrun --nproc_per_node=2 recipe_train.py \
+torchrun --nproc_per_node=2 train_hypernetwork.py \
     --hf_model /blue/sgao1/zhengao/Llama-2-7b-hf \
     --use_fsdp True \
     --p 0.48 \
