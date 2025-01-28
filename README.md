@@ -1,10 +1,11 @@
 ### Dimension-Independent Structural Pruning for Large Language Models
+### NeurIPS 2024: Deep Learning
 
 ---
 
 ####  Project Overview 
 
-This project implements a  hypernetwork-based pruning approach  for the LLaMA language model, enabling efficient pretraining with reduced parameters while maintaining performance. The hypernetwork dynamically generates pruning vectors for different layers of the model, applying structured pruning to reduce the computational cost.
+This project implements a  hypernetwork-based pruning approach  for the LLaMA language model, enabling efficient pretraining with reduced parameters while maintaining performance. The hypernetwork dynamically generates pruning vectors for different layers of the model, applying structured pruning to reduce the computational cost. This work was submitted to NeurIPS 2024 under the track of efficient large-scale model pruning.
 
 ---
 
