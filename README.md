@@ -1,5 +1,5 @@
 ### Dimension-Independent Structural Pruning for Large Language Models
-### NeurIPS 2024 topic of Deep Learning
+### NeurIPS 2024 Topic of Deep Learning
 
 ---
 
