@@ -1,18 +1,17 @@
-### Dimension-Independent Structural Pruning for Large Language Models
-
----
-
-####  Subject
-
-Computation and Language; Machine Learning
+### (NeurIPS-2024) Dimension-Independent Structural Pruning for Large Language Models
 
 ---
 
 ####  Project Overview 
 
-This project implements a  hypernetwork-based pruning approach  for the LLaMA language model, enabling efficient pretraining with reduced parameters while maintaining performance. The hypernetwork dynamically generates pruning vectors for different layers of the model, applying structured pruning to reduce the computational cost.
+This project implements a hypernetwork-based pruning approach for the LLaMA language model, enabling efficient pretraining with reduced parameters while maintaining performance. The hypernetwork is used to generate pruning vectors for different layers of the model, applying structured pruning to reduce the computational cost.
 
 ---
+
+####  Requirements
+
+The code is extensively tested with Pytorch 2.0.1, and a complete environment is provided in the environment.yml file.
+
 
 ####  Code Structure 
 ```
@@ -67,13 +66,6 @@ This project implements a  hypernetwork-based pruning approach  for the LLaMA la
 1.  Multi-GPU Training :
    Use the `run1.sh` script for launching distributed training with torchrun or mpirun.
 
----
-
-####  Key Features 
-
--  Dynamic Pruning : Reduces model parameters while preserving performance.
--  Distributed Training : Scales efficiently across GPUs and nodes.
--  Customizable Pipeline : Easily adjust pruning ratios, learning rates, and block sizes.
 ---
 #### To-Do List
 - Perform pruning and evaluation on the LLaMA-2 7B model using the trained hypernetwork weights.

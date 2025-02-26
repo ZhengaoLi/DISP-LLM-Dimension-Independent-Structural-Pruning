@@ -61,6 +61,7 @@ def main(
     hn_lr: float = 1e-3,
     min_hn_lr: float = 1e-3,
     use_sch: bool = False,
+    use_bf16: bool = False,
 ):
 
     # Initialize the distributed environment
@@ -153,18 +154,27 @@ def main(
             transformer_auto_wrap_policy,
             transformer_layer_cls={PruneLlamaDecoderLayer}
         )
-
-        model = FSDP(
-            model,
-            auto_wrap_policy=my_auto_wrap_policy,
-            use_orig_params=True,
-            mixed_precision=MixedPrecision(
-                param_dtype=data_type,
-                reduce_dtype=data_type,
-                buffer_dtype=data_type
-            ),
-        )
+        if use_bf16:
+            model = model.to(data_type).to(device_id)
+            model = FSDP(
+                model, 
+                auto_wrap_policy=my_auto_wrap_policy,
+                use_orig_params=True
+                )
+        else:
+            model = FSDP(
+                model,
+                auto_wrap_policy=my_auto_wrap_policy,
+                use_orig_params=True,
+                mixed_precision=MixedPrecision(
+                    param_dtype=data_type,
+                    reduce_dtype=data_type,
+                    buffer_dtype=data_type
+                ),
+            )
     else:
+        if use_bf16:
+            model = model.to(data_type).to(device_id)
         model = DDP(model)
 
     # Enable torch.compile
