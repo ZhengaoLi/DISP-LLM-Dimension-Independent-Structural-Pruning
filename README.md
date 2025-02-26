@@ -10,7 +10,7 @@ This project implements a hypernetwork-based pruning approach for the LLaMA lang
 
 ####  Requirements
 
-The code is extensively tested with Pytorch 2.0.1, and a complete environment is provided in the environment.yml file.
+The code is extensively tested with Pytorch 2.0.1 and transformers 4.44.2, and a complete environment is provided in the environment.yml file.
 
 
 ####  Code Structure 
@@ -39,8 +39,8 @@ The code is extensively tested with Pytorch 2.0.1, and a complete environment is
 
 ####  What This Code Does 
 
-1.  Dynamic Pruning with Hypernetwork :
-   - The  hypernetwork  (`hypernetwork.py`) generates pruning vectors dynamically for each layer in LLaMA.
+1.  Pruning with Hypernetwork :
+   - The  hypernetwork  (`hypernetwork.py`) generates pruning vectors for each layer in LLaMA.
 
 2.  Training Pipeline :
    - The main script (`train_hypernetwork.py`) handles training the hypernetwork while freezing the main LLaMA model.
@@ -68,7 +68,7 @@ The code is extensively tested with Pytorch 2.0.1, and a complete environment is
 
 ---
 #### To-Do List
-- Perform pruning and evaluation on the LLaMA-2 7B model using the trained hypernetwork weights.
+- Perform pruning and evaluation on the LLaMA-2 7B model using the trained hypernetwork weights. Add supports for other datasets.
 #### Citation
 ```
 @inproceedings{gaodisp,
