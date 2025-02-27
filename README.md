@@ -24,6 +24,7 @@ The code is extensively tested with Pytorch 2.0.1 and transformers 4.44.2, and a
 ├── models/                    # Model architecture and tokenizer
 │   ├── __init__.py
 │   ├── modeling_llama_pruning.py  # LLaMA model with pruning support
+|   ├── modeling_llama_pruned.py # LLaMA model after pruning
 │   └── tokenizer.py           # Tokenizer utilities for LLaMA
 ├── pruning/                   # Pruning and hypernetwork logic
 │   ├── __init__.py
@@ -31,33 +32,11 @@ The code is extensively tested with Pytorch 2.0.1 and transformers 4.44.2, and a
 │   └── pruning_helper.py      # Helper functions for pruning
 ├── run1.sh                    # Example script for running training
 ├── train_hypernetwork.py      # Main script for hypernetwork training
+├── prune_model.py             # Perform pruning for models given the trained hypernetwork
 └── utils/                     # General utility scripts
     ├── __init__.py
     └── distributed_env.py     # Utilities for distributed training environment
 ```
----
-
-####  What This Code Does 
-
-1.  Pruning with Hypernetwork :
-   - The  hypernetwork  (`hypernetwork.py`) generates pruning vectors for each layer in LLaMA.
-
-2.  Training Pipeline :
-   - The main script (`train_hypernetwork.py`) handles training the hypernetwork while freezing the main LLaMA model.
-   - The pruning process is guided by a  regularization loss  to enforce a target pruning ratio.
-
-3.  Distributed Training Support :
-   - The framework supports  Distributed Data Parallel (DDP)  and  Fully Sharded Data Parallel (FSDP)  for scaling across multiple GPUs or nodes.
-   - Distributed environment setup is handled in `distributed_env.py`.
-
-4.  Dataset Preprocessing :
-   - Utilities in `data_utils.py` preprocess datasets, tokenize text, and create dataloaders.
-   - Compatible with HuggingFace datasets, such as Wikitext.
-
-5.  LLaMA Model with Pruning :
-   - The LLaMA model architecture is adapted for pruning in `modeling_llama_pruning.py`.
-   - Tokenization logic is provided in `tokenizer.py`.
-
 ---
 
 #### How to Run
@@ -80,6 +59,30 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch --main_process_port 12323 --num_process
 4. If you want to perform fine-tuning, simply treat the model files located in `path/to/your/out_dir` as as standard Hugging Face models. You can use the existing PEFT library or any other fine-tuning libraries for this purpose.
 
 ---
+
+####  What This Code Does 
+
+1.  Pruning with Hypernetwork :
+   - The hypernetwork (`hypernetwork.py`) generates pruning vectors for each layer in LLaMA.
+
+2.  Training Pipeline :
+   - The main script (`train_hypernetwork.py`) handles training the hypernetwork while freezing the main LLaMA model.
+   - The pruning process is guided by a regularization loss  to enforce a target pruning ratio.
+
+3.  Distributed Training Support :
+   - The framework supports  Distributed Data Parallel (DDP)  and  Fully Sharded Data Parallel (FSDP)  for scaling across multiple GPUs or nodes.
+   - Distributed environment setup is handled in `distributed_env.py`.
+
+4.  Dataset Preprocessing :
+   - Utilities in `data_utils.py` preprocess datasets, tokenize text, and create dataloaders.
+   - Compatible with HuggingFace datasets, such as Wikitext.
+
+5.  LLaMA Model with Pruning :
+   - The LLaMA model architecture is adapted for pruning in `modeling_llama_pruning.py`.
+   - Tokenizer is provided in `tokenizer.py`.
+
+---
+
 #### To-Do List
 - Add supports for other datasets and models.
 
