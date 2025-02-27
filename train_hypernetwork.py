@@ -45,7 +45,7 @@ def round_to_block_size(current_rank, block_size=32):
 def main(
     exp_name: str = 'displlm',
     out_dir: str = None,
-    hf_model: str = '/blue/sgao1/zhengao/Llama-2-7b-hf',
+    hf_model: str = 'meta-llama/Llama-2-7b-hf',
     learning_rate: float = None,
     total_n_step: int = 100000,
     start_iter: int = 0,

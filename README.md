@@ -1,10 +1,10 @@
-### (NeurIPS-2024) Dimension-Independent Structural Pruning for Large Language Models
+### (NeurIPS-2024) DISP-LLM: Dimension-Independent Structural Pruning for Large Language Models
 
 ---
 
 ####  Project Overview 
 
-This project implements a hypernetwork-based pruning approach for the LLaMA language model, enabling efficient pretraining with reduced parameters while maintaining performance. The hypernetwork is used to generate pruning vectors for different layers of the model, applying structured pruning to reduce the computational cost.
+This project implements DISP-LLM: Dimension-Independent Structural Pruning for Large Language Models. The code in this repo supports LLaMA 7B/13B and LLaMA-2 7B/13B models. The paper is availabe at https://arxiv.org/html/2410.11988v2.
 
 ---
 
@@ -63,12 +63,26 @@ The code is extensively tested with Pytorch 2.0.1 and transformers 4.44.2, and a
 #### How to Run
 
 
-1.  Multi-GPU Training :
+1. Multi-GPU Training :
    Use the `run1.sh` script for launching distributed training with torchrun or mpirun.
+2. Model Pruning:
+```
+python prune_model.py --hf_model meta-llama/Llama-2-7b-hf --hn_path path/to/your/hn/hn-ckpt-final-0.50.pt --out_dir path/to/your/out_dir
+```
+3. Evaluate Zero-Shot Performance with lm-evaluation-harness. Make sure you have installed lm-evaluation-harness following their [installation guide](https://github.com/EleutherAI/lm-evaluation-harness?tab=readme-ov-file#install).
+```
+CUDA_VISIBLE_DEVICES=0 accelerate launch --main_process_port 12323 --num_processes 1 \
+    -m lm_eval --model hf \
+    --model_args pretrained=/path/to/your/out_dir/,dtype="bfloat16",trust_remote_code=true \
+    --tasks hellaswag,arc_easy,arc_challenge,piqa,winogrande \
+    --batch_size 16 
+```
+4. If you want to perform fine-tuning, simply treat the model files located in `path/to/your/out_dir` as as standard Hugging Face models. You can use the existing PEFT library or any other fine-tuning libraries for this purpose.
 
 ---
 #### To-Do List
-- Perform pruning and evaluation on the LLaMA-2 7B model using the trained hypernetwork weights. Add supports for other datasets.
+- Add supports for other datasets and models.
+
 #### Citation
 ```
 @inproceedings{gaodisp,
