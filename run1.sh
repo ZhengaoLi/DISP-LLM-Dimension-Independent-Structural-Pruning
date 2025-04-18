@@ -5,7 +5,7 @@ torchrun --nproc_per_node=2 train_hypernetwork.py \
     --p 0.48 \
     --lam 16.0 \
     --batch_size 1 \
-    --total_n_step 1000 \
+    --total_n_step 10000 \
     --hn_lr 1e-3 \
     --min_hn_lr 1e-4 \
     --use_sch False \
