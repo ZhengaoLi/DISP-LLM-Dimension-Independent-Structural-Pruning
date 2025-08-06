@@ -1,3 +1,3 @@
 from .tokenizer import LlamaTokenizer
-from .modeling_llama_prune import LlamaForCausalLM as PruneLlamaForCausalLM
-from .modeling_llama_prune import LlamaDecoderLayer as PruneLlamaDecoderLayer
+from .modeling_llama_pruning import LlamaForCausalLM as PruneLlamaForCausalLM
+from .modeling_llama_pruning import LlamaDecoderLayer as PruneLlamaDecoderLayer
