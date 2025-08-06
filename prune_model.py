@@ -236,7 +236,7 @@ def main(
     pruned_model.register_for_auto_class("AutoModelForCausalLM")
 
     pruned_model.save_pretrained(out_dir)
-    tokenizer.save_pretrained(out_dir)
+    hf_tokenizer.save_pretrained(out_dir)
 
     print('read file')
     with open(os.path.join(out_dir,'modeling_llama_pruned.py'), 'r') as f:
